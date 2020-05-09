@@ -1,0 +1,40 @@
+<%- include("../partials/header") %>
+    
+
+
+<div class="container" style="margin-top: 1rem;">
+    <h1  class="display-3 " style="text-align: center; margin-top: 2rem; margin-bottom: 10px;font-size: 3rem;">  Edit "<%=foundcamp.name%>"</h1>
+    
+    
+        
+    <div class="row">
+        <div style="width: 40%;margin: 0 auto; ">
+        <form action="/campgrounds/<%=foundcamp._id%>?_method=PUT" method="POST">
+            <div class="form-group">
+        <input class="form-control" type="text" value="<%=foundcamp.name%>" name="camp[name]">
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="number"  value="<%=foundcamp.price%>" name="camp[price]" min="1" step="1">
+                      </div>
+              <div class="form-group">
+        <input class="form-control" type="text" value="<%=foundcamp.image%>" name="camp[image]">
+        </div>
+            <div class="form-group">
+                
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" value="<%=foundcamp.information%>" name="camp[information]"  ><%=foundcamp.information%></textarea>
+              </div>
+            
+        <div class="form-group">
+            <button type="submit" type="button" class="btn btn-secondary btn-lg btn-block">SUBMIT!!</button>
+        </div>
+       
+       
+        
+      </form>
+      <a href="/campgrounds">Back!</a>
+      </div>
+      </div>
+  </div>      
+</div>
+  
+<%- include("../partials/footer") %>

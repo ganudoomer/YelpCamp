@@ -1,0 +1,101 @@
+body {
+	background-image: url(https://i.dlpng.com/static/png/6906537_preview.png);
+}
+
+.cb-slideshow,
+.cb-slideshow:after {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	z-index: 0;
+	margin: 0em;
+}
+ul {
+	list-style-type: none;
+}
+.cb-slideshow:after {
+	content: '';
+}
+.cb-slideshow li span {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	color: transparent;
+	background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: none;
+	opacity: 0;
+	z-index: 0;
+	animation: imageAnimation 36s linear infinite 0s;
+}
+
+.header {
+	z-index: 1000;
+	position: relative;
+	margin-top: 15rem;
+	left: 0px;
+	width: 100%;
+	text-align: center;
+	color: rgb(0, 0, 0);
+}
+#yelp {
+	font-weight: 300;
+}
+
+.cb-slideshow li:nth-child(1) span {
+	background-image: url(https://images.unsplash.com/photo-1492648272180-61e45a8d98a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80);
+}
+.cb-slideshow li:nth-child(2) span {
+	background-image: url(https://unsplash.com/photos/pSaEMIiUO84/download?force=true&w=1920);
+	animation-delay: 6s;
+}
+.cb-slideshow li:nth-child(3) span {
+	background-image: url(https://unsplash.com/photos/TcgASSD5G04/download?force=true&w=1920);
+	animation-delay: 12s;
+}
+.cb-slideshow li:nth-child(4) span {
+	background-image: url(https://unsplash.com/photos/0aGUZQ25DOw/download?force=true&w=1920);
+	animation-delay: 18s;
+}
+.cb-slideshow li:nth-child(5) span {
+	background-image: url(https://unsplash.com/photos/DSB1MZWsGco/download?force=true&w=1920);
+	animation-delay: 24s;
+}
+.cb-slideshow li:nth-child(6) span {
+	background-image: url(https://unsplash.com/photos/m1PFxGQ-5x0/download?force=true&w=1920);
+	animation-delay: 30s;
+}
+
+@keyframes imageAnimation {
+	0% {
+		opacity: 0;
+		animation-timing-function: ease-in;
+	}
+	8% {
+		opacity: 1;
+		animation-timing-function: ease-out;
+	}
+	17% {
+		opacity: 1;
+	}
+	25% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+.no-cssanimations .cb-slideshow li span {
+	opacity: 1;
+}
+
+@media screen and (max-width: 600px) {
+	.cb-slideshow li div h3 {
+		font-size: 80px;
+	}
+}

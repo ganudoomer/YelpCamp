@@ -1,0 +1,40 @@
+body {
+	background-position: center center;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-image: url(https://unsplash.com/photos/z7Z6vUPkLbQ/download?force=true&w=1920);
+}
+
+.lead {
+	margin: 2rem;
+	margin-left: 2rem;
+	font-size: 2rem;
+}
+.cardmain {
+	margin-left: 2em;
+	margin-top: 2em;
+}
+.cardsub {
+	width: 50rem;
+}
+.comments {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+.delete-button {
+	display: inline;
+}
+#edit-btn {
+	margin-bottom: 0;
+}
+.btn-group-xs > .btn,
+.btn-xs {
+	padding: .30rem .50rem;
+	font-size: .9rem;
+	line-height: .7;
+	border-radius: .2rem;
+}
+#username-comment {
+	margin: auto;
+}

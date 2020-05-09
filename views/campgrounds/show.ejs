@@ -1,0 +1,249 @@
+
+<%- include("../partials/header") %>
+
+
+<div class="container">
+<div class="row" style="margin-top: 1rem;">
+
+  <div class="col-3-md">
+    <p class="lead"  >Yelp Camp</p>
+    <div class="card" style="width: 15rem;">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item active">Info-1</li>
+          <li class="list-group-item">Info-2</li>
+          <li class="list-group-item">Info-3</li>
+          <li class="list-group-item">Info-4</li>
+          <li class="list-group-item">Info-5</li>
+        </ul>
+      </div>
+          </div>
+
+  <div class="col-md-9">
+    <div class="card p-3 mb-3">
+      <img class="card-img-top" src="<%= foundcamp.image %>" alt="<%= foundcamp.name %>">
+
+      <div class="card-body">
+        <h5 class="float-right" ><%=foundcamp.price%>₹/Night</h5>
+        <h4  class="card-title"><a href="#"><%=foundcamp.name%></a></h4>
+      <p class="card-text"><%=foundcamp.information%></p>
+      <p class="card-text text-muted"><em>Submitted by <%=foundcamp.author.username%> , <%= moment(foundcamp.created).fromNow() %></em></p>
+      <hr>
+      <% if(currentUser&&foundcamp.author.id.equals(currentUser._id)){  %>
+        <a href="/campgrounds/<%=foundcamp._id%>/edit" class="btn btn-warning btn-sm">Edit</a>
+        <form class="delete-button" action="/campgrounds/<%=foundcamp._id%>?_method=DELETE" method="POST">
+          <button  class="btn btn-danger btn-sm">Delete</button>
+        </form>
+        <%}%>
+     
+    </div>
+    </div>
+      
+        <!-- COMMENT TEMPLATE    -->
+     
+    <div class="card">
+      <div class="card-body">
+        <div class="text-right">
+          <a class="btn btn-info" href="/campgrounds/<%= foundcamp._id %>/comments/new">Add New Comment</a>
+        </div>
+        <hr>
+        <div class="row">
+        <% foundcamp.comments.forEach(function(comment){ %>
+          <div class="col-md-12 mb-2">
+            <div class="card">
+              <div class="card-body">
+                <div class="float-left">
+                  <p class="card-title"><strong> <%= comment.author.username %></strong></p>
+                  <p class="card-text"><%= comment.text %></p>
+                </div>
+                <div class="float-right">
+                  <p class="text-muted"><%= moment(comment.created).fromNow() %></p>
+                  
+                  <% if(currentUser&&comment.author.id.equals(currentUser._id)){ %>
+                  <div class="float-right">
+                    <a class="btn btn-outline-info btn-xs" href="/campgrounds/<%=foundcamp._id%>/comments/<%=comment._id%>/edit">Edit</a>
+                       <form   class="delete-button" action="/campgrounds/<%=foundcamp._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-outline-danger btn-xs">Delete</button>
+                      </form>
+                  </div>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- <div class="container">
+    <div class="row">
+      <div class="col-3-md">
+<p class="lead"  >Yelp Camp</p>
+<div class="card" style="width: 18rem;">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item active">Info-1</li>
+      <li class="list-group-item">Info-2</li>
+      <li class="list-group-item">Info-3</li>
+      <li class="list-group-item">Info-4</li>
+      <li class="list-group-item">Info-5</li>
+    </ul>
+  </div>
+      </div>
+      <div id="map">
+
+      </div>
+      <div class=" col-3-sm   col-9-md cardmain" >
+   
+        
+        <div class="card p-3  cardsub" >
+            <img class="card-img-top" src="<%=foundcamp.image%>" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="float-right" ><%=foundcamp.price%>₹/Night</h5>
+                <h4  class="card-title"><a href="#"><%=foundcamp.name%></a></h4>
+              <p class="card-text"><%=foundcamp.information%></p>
+              <p class="card-text text-muted"><em>Submitted by <%=foundcamp.author.username%> , <%= moment(foundcamp.created).fromNow() %></em></p>
+              <% if(currentUser&&foundcamp.author.id.equals(currentUser._id)){  %>
+                <a href="/campgrounds/<%=foundcamp._id%>/edit" class="btn btn-warning btn-sm">Edit</a>
+                <form class="delete-button" action="/campgrounds/<%=foundcamp._id%>?_method=DELETE" method="POST">
+                  <button  class="btn btn-danger btn-sm">Delete</button>
+                </form>
+                <%}%>
+             
+            </div>
+          </div>
+          <div class="card bg-light comments " >
+            <div class="card-header" >
+                <p class="float-right">
+                    <a  class="btn btn-info " href="/campgrounds/<%=foundcamp._id%>/comments/new">Add Comments</a>
+                </p>
+                
+                 </div>
+            <div class="card-body " >        
+                    <% foundcamp.comments.forEach(function(comments){ %>
+                      
+                       <p id="username-comment"><strong ><%=comments.author.username%></strong> </p>
+                       <span class="float-right text-muted"><%= moment(comments.created).fromNow() %></span>
+                            <p id="username-comment"> <%=comments.text%></p>
+                            <% if(currentUser&&comments.author.id.equals(currentUser._id)){  %> 
+                       <a class="btn btn-outline-info btn-xs" href="/campgrounds/<%=foundcamp._id%>/comments/<%=comments._id%>/edit">Edit</a>
+                       <form   class="delete-button" action="/campgrounds/<%=foundcamp._id%>/comments/<%=comments._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-outline-danger btn-xs">Delete</button>
+                      </form>
+                                  <%}%>
+                            <%})%>
+                        </div>
+                    </div>
+                  </div>
+               
+                   
+                    
+                
+            </div>
+        
+          </div>
+         </div>
+       
+      
+      
+    </div>
+</div>  -->
+ 
+
+
+
+
+
+
+
+
+
+<%- include("../partials/footer") %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container">
+    <div class="row">
+      <div class="col-1-md">
+<p class="lead"  >Yelp Camp</p>
+<div class="card" >
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item active">Info-1</li>
+      <li class="list-group-item">Info-2</li>
+      <li class="list-group-item">Info-3</li>
+      <li class="list-group-item">Info-4</li>
+      <li class="list-group-item">Info-5</li>
+    </ul>
+  </div>
+      </div>
+            <div class="col-12-md">
+
+              <div class=" p-3 cardmain" >
+                <div class="card cardsub" >
+                    <img class="card-img-top  img-responsive" src="<%=foundcamp.image%>" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="float-right" >9.00$/Night</h5>
+                        <h4  class="card-title"><a href="#"><%=foundcamp.name%></a></h4>
+                      <p class="card-text"><%=foundcamp.information%></p>
+                      <p class="card-text text-muted"><em>Submitted by <%=foundcamp.author.username%></em></p>
+                      
+                      
+                      <% if(currentUser){  %>
+                      <a href="/campgrounds/<%=foundcamp._id%>/edit" class="btn btn-warning btn-sm">Edit</a>
+                      <form id="delete-button" action="/campgrounds/<%=foundcamp._id%>?_method=DELETE" method="POST">
+                        <button  class="btn btn-danger btn-sm">Delete</button>
+                      </form>
+                      <%}%>
+                   
+                      <div class="card bg-light comments " >
+                        <div class="card-header" >
+                            <p class="float-right">
+                                <a  class="btn btn-info " href="/campgrounds/<%=foundcamp._id%>/comments/new">Add Comments</a>
+                            </p>
+                            
+                             </div>
+                        <div class="card-body " >        
+                                <% foundcamp.comments.forEach(function(comments){ %>
+                                    <strong><%=comments.author.username%></strong>
+                                    <span class="float-right text-muted">10 days ago</span>
+                                        <p> <%=comments.text%></p>
+                                <%})%>
+                                
+                                    </div>
+                                </div>
+                      
+                  
+<%- include("../partials/footer") %> -->
